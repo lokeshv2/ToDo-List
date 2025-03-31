@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .TODO{
+            border: 1px solid grey;
+            padding:8px;
+            width: 12rem;
+            height:2.1rem;
+            margin-left:1rem;
+            border-radius: 0.2rem;
+        }
+        .date{
+            border: 1px solid grey;
+            padding:8px;
+            width: 12rem;
+            height:2rem;
+            border-radius: 0.2rem;
+            margin-left:1rem;
+        }
+        .add{
+            border: none;
+            width: 9rem;
+            padding:8px;
+            margin-left:1rem;
+            height:3rem;
+            background-color: green;
+            align-items: stretch;
+        }
+        .cont{
+            display: flex;
+            flex-direction: row;
+            margin-left:1rem;
+            margin-top:1rem;
+            align-items: center;
+        }
+        .taskdate{
+            margin-left:12rem;
+            margin-top: 12px;
+        }
+        .taskname{
+            margin-top: 12px;
+        }
+        .deletebutton{
+        margin-left:9.6rem;
+        background-color: red;
+        height:3rem;
+        width: 9rem;
+        color:white;
+        border:none;
+        padding:8px;
+        
+        }
+
+        
+    </style>
+</head>
+<body>
+    <p style="margin-left: 1rem;">TODO Lists</p>
+    <input type="text" class="TODO" placeholder="Enter your task"  onkeydown="if(event.key=='Enter'){
+        funt();
+        display();
+    }">
+    <input type="date" class="date" onkeydown="if(event.key=='Enter'){
+        funt();
+        display();
+    }">
+    <button onclick="funt();
+    display();" class="add">Enter</button>
+    <div class="lists"> </div>
+   <script>
+    const list=[];
+function funt(){
+    let name=document.querySelector(".TODO");
+    let date=document.querySelector(".date");
+    list.push({name:name.value,date:date.value});
+    name.value='';
+    date.value='';
+}
+function display(){
+    let val='';
+    for(let i=0;i<list.length;i++){
+        val+=`<div class="cont"><div class="taskname">${list[i].name}</div> <div class="taskdate">${list[i].date}</div> <button class="deletebutton" onclick="list.splice(${i},1)
+            display()">Delete</button></div>`;
+    }
+    document.querySelector(".lists").innerHTML=val;
+}
+    </script> 
+</body>
+</html>
